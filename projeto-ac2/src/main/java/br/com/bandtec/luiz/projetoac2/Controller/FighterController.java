@@ -25,7 +25,12 @@ public class FighterController {
 
     @PostMapping
     public ResponseEntity insertFighter(@RequestBody Fighter fighter){
-        return ResponseEntity.ok().body(_repo.save(fighter));
+        try{
+            return ResponseEntity.ok().body(_repo.save(fighter));
+        }
+        catch (Exception e){
+            return ResponseEntity.ok().body(e.getMessage());
+        }
     }
 
     @GetMapping("/count")
@@ -38,7 +43,7 @@ public class FighterController {
         }
     }
 
-    @GetMapping("/fightersDead")
+    @GetMapping("/dead")
     public ResponseEntity getDead(){
         try{
             return ResponseEntity.ok().body(_repo.findByVida());
