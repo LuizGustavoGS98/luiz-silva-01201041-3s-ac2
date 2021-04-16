@@ -38,4 +38,13 @@ public class FighterController {
         }
     }
 
+    @GetMapping("/fightersDead")
+    public ResponseEntity getDead(){
+        try{
+            return ResponseEntity.ok().body(_repo.findByVida());
+        }
+        catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
